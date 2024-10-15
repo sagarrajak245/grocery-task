@@ -1,24 +1,30 @@
-// sagar dash board created here
+// grocery-app/src/pages/Dashboard.jsx
+
+// Import necessary libraries and components
 import { Bell, ChevronDown, Heart, Home, Menu, MessageCircle, Search, Settings, ShoppingBag, Star } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+// Main component for the Grocery Dashboard
 const GroceryDashboard = () => {
+  // State variables for mobile menu and profile dropdown
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
+  // Functions to toggle mobile menu and profile dropdown
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const toggleProfileDropdown = () => setIsProfileDropdownOpen(!isProfileDropdownOpen);
 
-const Categories= ["Fruits", "Bread", "Vegetable", "Fish", "Meat", "Drinks", "Sea Food", "Ice cream"];
-
+  // Categories available in the grocery store
+  const Categories = ["Fruits", "Bread", "Vegetable", "Fish", "Meat", "Drinks", "Sea Food", "Ice cream"];
 
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar for larger screens */}
       <aside className="hidden w-64 bg-white p-6 shadow-md lg:block">
         <nav className="space-y-8">
+          {/* Sidebar links */}
           <SidebarLink href="#" icon={<Home />} text="Dashboard" active />
           <SidebarLink href="#" icon={<Star />} text="Categories" />
           <SidebarLink href="#" icon={<Heart />} text="Favourite" />
@@ -30,7 +36,7 @@ const Categories= ["Fruits", "Bread", "Vegetable", "Fish", "Meat", "Drinks", "Se
       </aside>
 
       <div className="flex flex-1 flex-col overflow-hidden">
-        {/* Header */}
+        {/* Header section */}
         <header className="flex h-16 items-center justify-between border-b bg-white px-6">
           <div className="flex items-center space-x-4">
             {/* Mobile menu button */}
@@ -41,6 +47,7 @@ const Categories= ["Fruits", "Bread", "Vegetable", "Fish", "Meat", "Drinks", "Se
             <h1 className="text-xl font-semibold">Grocery Dashboard</h1>
           </div>
           <div className="flex items-center space-x-4">
+            {/* Search form for products */}
             <form className="relative hidden md:block">
               <input
                 type="search"
@@ -49,21 +56,24 @@ const Categories= ["Fruits", "Bread", "Vegetable", "Fish", "Meat", "Drinks", "Se
               />
               <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
             </form>
+            {/* Notifications button */}
             <button className="text-gray-500 hover:text-gray-600 focus:outline-none focus:ring">
               <Bell className="h-6 w-6" />
               <span className="sr-only">Notifications</span>
             </button>
             <div className="relative">
+              {/* Profile dropdown button */}
               <button onClick={toggleProfileDropdown} className="flex items-center space-x-2 focus:outline-none focus:ring">
                 <div className="h-8 w-8 rounded-full bg-gray-300"></div>
                 <span>sagar rajak</span>
                 <ChevronDown className="h-5 w-5 text-gray-400" />
               </button>
+              {/* Profile dropdown menu */}
               {isProfileDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5">
-                  <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</Link>
-                  <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</Link>
-                  <Link href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</Link>
+                  <Link to="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</Link>
+                  <Link to="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</Link>
+                  <Link to="/login" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</Link>
                 </div>
               )}
             </div>
@@ -77,7 +87,7 @@ const Categories= ["Fruits", "Bread", "Vegetable", "Fish", "Meat", "Drinks", "Se
             <p className="text-gray-600">Here&apos;s what&apos;s fresh in our store today.</p>
           </div>
 
-          {/* Categories */}
+          {/* Categories section */}
           <section className="mb-8">
             <h3 className="mb-4 text-lg font-semibold">Categories</h3>
             <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8">
@@ -94,7 +104,7 @@ const Categories= ["Fruits", "Bread", "Vegetable", "Fish", "Meat", "Drinks", "Se
             </div>
           </section>
 
-          {/* Popular Products */}
+          {/* Popular Products section */}
           <section className="mb-8">
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-lg font-semibold">Popular Products</h3>
@@ -121,7 +131,7 @@ const Categories= ["Fruits", "Bread", "Vegetable", "Fish", "Meat", "Drinks", "Se
             </div>
           </section>
 
-          {/* Discount Shop */}
+          {/* Discount Shop section */}
           <section>
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-lg font-semibold">Discount Shop</h3>
@@ -176,6 +186,7 @@ const Categories= ["Fruits", "Bread", "Vegetable", "Fish", "Meat", "Drinks", "Se
               </button>
             </div>
             <nav className="space-y-8">
+              {/* Mobile sidebar links */}
               <SidebarLink href="#" icon={<Home />} text="Dashboard" active />
               <SidebarLink href="#" icon={<Star />} text="Categories" />
               <SidebarLink href="#" icon={<Heart />} text="Favourite" />
@@ -191,6 +202,7 @@ const Categories= ["Fruits", "Bread", "Vegetable", "Fish", "Meat", "Drinks", "Se
   );
 }
 
+// SidebarLink component for rendering links in the sidebar
 const SidebarLink = ({ href, icon, text, active = false }) => (
   <Link href={href} className={`flex items-center space-x-3 rounded-lg px-3 py-2 ${active ? 'bg-green-100 text-green-900' : 'text-gray-600 hover:bg-green-100 hover:text-green-900'}`}>
     {icon}
@@ -198,6 +210,7 @@ const SidebarLink = ({ href, icon, text, active = false }) => (
   </Link>
 );
 
+// Prop types for SidebarLink component
 SidebarLink.propTypes = {
   href: PropTypes.string.isRequired,
   icon: PropTypes.node.isRequired,
@@ -205,7 +218,9 @@ SidebarLink.propTypes = {
   active: PropTypes.bool,
 };
 
+// Default props for SidebarLink component
 SidebarLink.defaultProps = {
   active: false,
 };
+
 export default GroceryDashboard;

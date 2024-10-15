@@ -11,19 +11,19 @@ const ForgotPassword = () => {
     email: Yup.string().email('Invalid email').required('Required'),
     newPassword: Yup.string().required('Required'),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
+      .oneOf([Yup.ref('newPassword'), null], 'Passwords must match') 
       .required('Required'),
   });
 
   const handleSubmit = (values) => {
     console.log('Password reset submitted', values);
-    // Handle password reset logic here (e.g., API call)
+    //sagar in future we gonna use api call and other merthod to it
     // After successful password reset, set success state
     setSuccess(true);
     // Redirect to login page after a short delay
     setTimeout(() => {
       navigate('/login'); // Redirect to login page
-    }, 2000);
+    }, 3000);
   };
 
   return (

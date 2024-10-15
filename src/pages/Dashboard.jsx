@@ -11,6 +11,9 @@ const GroceryDashboard = () => {
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const toggleProfileDropdown = () => setIsProfileDropdownOpen(!isProfileDropdownOpen);
 
+const Categories= ["Fruits", "Bread", "Vegetable", "Fish", "Meat", "Drinks", "Sea Food", "Ice cream"];
+
+
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar for larger screens */}
@@ -78,7 +81,7 @@ const GroceryDashboard = () => {
           <section className="mb-8">
             <h3 className="mb-4 text-lg font-semibold">Categories</h3>
             <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8">
-              {["Fruits", "Bread", "Vegetable", "Fish", "Meat", "Drinks", "Sea Food", "Ice cream"].map((category, index) => (
+              {Categories.map((category, index) => (
                 <div key={`${category}-${index}`} className="rounded-lg bg-white p-4 text-center shadow">
                   <img
                     src={`/placeholder.svg?height=50&width=50`}
